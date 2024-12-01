@@ -1,4 +1,5 @@
-inventory_management_system
+Inventory_management_system
+
 A cloud-based inventory management system developed with Django and AWS services. This project aims to automate inventory tracking, order management, and reporting to help small and medium-sized enterprises (SMEs) manage their operations efficiently. The system supports real-time stock updates, low-stock notifications, and provides detailed reports on sales, inventory, and order status.
 
 Features include real-time inventory management that tracks stock levels and updates inventory in real-time, low-stock notifications that provide automated alerts when stock levels fall below a predefined threshold, order management with an intuitive interface to easily view, update, and track order statuses, reporting to generate detailed reports on stock levels, sales, order statuses, and other metrics, and user authentication with secure login and sign-up functionality with role-based access control.
