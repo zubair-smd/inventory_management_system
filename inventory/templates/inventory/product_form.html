@@ -1,0 +1,23 @@
+{% extends "authentication/base.html" %}
+{% block title %}Add/Edit Product{% endblock %}
+{% block content %}
+<h2>{% if product %}Edit{% else %}Add{% endif %} Product</h2>
+<form method="POST">
+    {% csrf_token %}
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" value="{{ product.name|default_if_none:'' }}" required>
+    <label for="description">Description:</label>
+    <textarea id="description" name="description">{{ product.description|default_if_none:'' }}</textarea>
+    <label for="price">Price:</label>
+    <input type="number" id="price" name="price" step="0.01" value="{{ product.price|default_if_none:'' }}" required>
+    <label for="supplier">Supplier:</label>
+    <select id="supplier" name="supplier">
+        {% for supplier in suppliers %}
+        <option value="{{ supplier.id }}" {% if product and product.supplier.id == supplier.id %}selected{% endif %}>
+            {{ supplier.name }}
+        </option>
+        {% endfor %}
+    </select>
+    <button type="submit">Save</button>
+</form>
+{% endblock %}

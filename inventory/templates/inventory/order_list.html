@@ -1,0 +1,61 @@
+{% extends "authentication/base.html" %}
+{% block title %}Order List{% endblock %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/orderlist.css' %}">
+
+<div class="order-container">
+    <h2 class="order-title">Order List</h2>
+    <a href="{% url 'order_create' %}" class="btn-add-order">Add Order</a>
+
+    <ul class="order-list">
+        {% for order in orders %}
+        <li class="order-item">
+            <div>
+                <span class="product-name">{{ order.product.name }}</span> - 
+                <span class="order-quantity">{{ order.quantity }}</span>
+                (<span class="order-status">{{ order.status }}</span>)
+            </div>
+            <div class="order-actions">
+                <!-- Edit Button -->
+                <a href="{% url 'order_update' order.id %}" class="btn-edit">Edit</a>
+            </div>
+        </li>
+        {% empty %}
+        <li>No orders available.</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<!-- Table of All Orders -->
+<div class="all-orders-table-container" style="margin-top: 30px; background-color: #fff; border-radius: 10px; padding: 20px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
+    <h3 class="table-title" style="text-align: center; font-size: 20px; font-weight: bold; margin-bottom: 15px;">All Orders</h3>
+    <table class="all-orders-table" style="width: 100%; border-collapse: collapse; font-family: Arial, sans-serif;">
+        <thead>
+            <tr style="background-color: #f4f4f4; text-align: left;">
+                <th style="padding: 10px; border: 1px solid #ddd;">Order ID</th>
+                <th style="padding: 10px; border: 1px solid #ddd;">Product</th>
+                <th style="padding: 10px; border: 1px solid #ddd;">Quantity</th>
+                <th style="padding: 10px; border: 1px solid #ddd;">Status</th>
+                <th style="padding: 10px; border: 1px solid #ddd;">Date Created</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+            <tr style="{% cycle 'background-color: #f9f9f9;' 'background-color: #fff;' %}">
+                <td style="padding: 10px; border: 1px solid #ddd;">{{ order.id }}</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">{{ order.product.name }}</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">{{ order.quantity }}</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">{{ order.status }}</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">{{ order.date_created|date:"Y-m-d H:i" }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" style="text-align: center; padding: 10px; color: #888;">No orders available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

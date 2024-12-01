@@ -1,0 +1,117 @@
+{% extends "authentication/base.html" %}
+{% load static %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h2 class="sidebar-title">Inventory</h2>
+      <nav class="sidebar-nav">
+    <ul>
+        <li><a href="{% url 'dashboard' %}" class="sidebar-link" data-url="{% url 'dashboard' %}">Dashboard</a></li>
+        <li><a href="{% url 'product_list' %}" class="sidebar-link" data-url="{% url 'product_list' %}">Products</a></li>
+        <li><a href="{% url 'inventory_list' %}" class="sidebar-link" data-url="{% url 'inventory_list' %}">Inventory</a></li>
+        <li><a href="{% url 'order_list' %}" class="sidebar-link" data-url="{% url 'order_list' %}">Order</a></li>
+        <li><a href="{% url 'report' %}" class="sidebar-link" data-url="{% url 'report' %}">Report</a></li>
+        <li><a href="{% url 'generate_report_pdf' %}" class="sidebar-link" data-url="{% url 'generate_report_pdf' %}">Generate Report</a></li>
+    </ul>
+</nav>
+
+
+        <footer class="sidebar-footer">
+            <a href="{% url 'logout' %}" class="logout-link">Logout</a>
+        </footer>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="content-area">
+        <header class="content-header">
+            <h1>Dashboard</h1>
+        </header>
+         <!-- Notification Section -->
+         {% if low_stock_items_list and low_stock_count1 > 0 %}
+         <div class="notification-card">
+             <h3>Low Stock Alert!</h3>
+             <ul>
+                 {% for item in low_stock_items_list|slice:":3" %}  <!-- Display top 3 low-stock items -->
+                     <li>{{ item.name }} - {{ item.quantity }} left</li>
+                 {% endfor %}
+             </ul>
+             {% if low_stock_count1 > 3 %}  <!-- Show "View All" only if more than 3 low-stock items -->
+                 <a href="{% url 'inventory_list' %}" class="view-all-link">View All</a>
+             {% endif %}
+         </div>
+     {% endif %}
+     
+        <section class="content-section">
+            <!-- Statistics Section -->
+            <div class="stats-grid">
+                
+                <div class="stats-card">
+                    <h3>{{ to_be_shipped }}</h3>
+                    <p>To Be Shipped</p>
+                </div>
+               
+                <div class="stats-card">
+                    <h3>{{ to_be_invoiced }}</h3>
+                    <p>To Be Invoiced</p>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="chart-section">
+                <div class="chart-container">
+                    <h3>Order Status</h3>
+                    <canvas id="orderStatusChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3>Stock Status</h3>
+                    <canvas id="stockStatusChart"></canvas>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const orderStatusCtx = document.getElementById('orderStatusChart').getContext('2d');
+        new Chart(orderStatusCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Pending Orders', 'Completed Orders'],
+                datasets: [{
+                    data: [{{ pending_orders }}, {{ completed_orders }}],  // Precomputed data
+                    backgroundColor: ['#ff6384', '#36a2eb'],
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'top' },
+                }
+            }
+        });
+
+        const stockStatusCtx = document.getElementById('stockStatusChart').getContext('2d');
+        new Chart(stockStatusCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Low Stock', 'Sufficient Stock'],
+                datasets: [{
+                    data: [{{ low_stock_items }}, {{ sufficient_stock }}],  // Use precomputed sufficient_stock
+                    backgroundColor: ['#ffce56', '#4bc0c0'],
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'top' },
+                }
+            }
+        });
+    });
+</script>
+{% endblock %}

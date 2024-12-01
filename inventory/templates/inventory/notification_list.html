@@ -1,0 +1,15 @@
+{% extends "authentication/base.html" %}
+{% block title %}Notifications{% endblock %}
+{% block content %}
+<h2>Notifications</h2>
+<ul>
+    {% for notification in notifications %}
+    <li style="margin-bottom: 10px; {% if not notification.is_read %}font-weight: bold;{% endif %}">
+        {{ notification.message }} ({{ notification.created_at|date:"Y-m-d H:i" }})
+        {% if not notification.is_read %}
+        <a href="{% url 'mark_notification_read' notification.id %}">Mark as read</a>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

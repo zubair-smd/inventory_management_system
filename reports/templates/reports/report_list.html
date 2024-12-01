@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Reports{% endblock %}
+
+{% block content %}
+<div class="report-container">
+    <h1>Inventory Management Reports</h1>
+
+    <section class="report-section">
+        <h2>Inventory Levels</h2>
+        <p><strong>Total Stock:</strong> {{ total_stock }}</p>
+        <p><strong>Low Stock Items:</strong> {{ low_stock_items }}</p>
+    </section>
+
+    <section class="report-section">
+        <h2>Order Status</h2>
+        <p><strong>Total Orders:</strong> {{ total_orders }}</p>
+        <p><strong>Pending Orders:</strong> {{ pending_orders }}</p>
+        <p><strong>Completed Orders:</strong> {{ completed_orders }}</p>
+    </section>
+
+    <section class="report-section">
+        <h2>Sales and Performance Metrics</h2>
+        <p><strong>Total Sales:</strong> ${{ total_sales }}</p>
+        <p><strong>Total Items Sold:</strong> {{ total_items_sold }}</p>
+    </section>
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inventory Report</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/reportpdf.css' %}">
+</head>
+<body>
+    <h1>Inventory Report</h1>
+    <h2>Summary</h2>
+    <div class="summary">
+        <div><strong>Total Stock:</strong> {{ total_stock }}</div>
+        <div><strong>Low Stock Items:</strong> {{ low_stock_items }}</div>
+        <div><strong>Total Orders:</strong> {{ total_orders }}</div>
+        <div><strong>Pending Orders:</strong> {{ pending_orders }}</div>
+        <div><strong>Completed Orders:</strong> {{ completed_orders }}</div>
+        <div><strong>Total Sales:</strong> ${{ total_sales }}</div>
+        <div><strong>Total Items Sold:</strong> {{ total_items_sold }}</div>
+    </div>
+</body>
+</html>

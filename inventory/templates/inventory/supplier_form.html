@@ -1,0 +1,15 @@
+{% extends "authentication/base.html" %}
+{% block title %}Add/Edit Supplier{% endblock %}
+{% block content %}
+<h2>{% if supplier %}Edit{% else %}Add{% endif %} Supplier</h2>
+<form method="POST">
+    {% csrf_token %}
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" value="{{ supplier.name|default_if_none:'' }}" required>
+    <label for="contact_email">Email:</label>
+    <input type="email" id="contact_email" name="contact_email" value="{{ supplier.contact_email|default_if_none:'' }}" required>
+    <label for="phone_number">Phone Number:</label>
+    <input type="text" id="phone_number" name="phone_number" value="{{ supplier.phone_number|default_if_none:'' }}">
+    <button type="submit">Save</button>
+</form>
+{% endblock %}

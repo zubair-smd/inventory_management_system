@@ -1,0 +1,46 @@
+.notification-card {
+    position: fixed; /* Fix position to the top right */
+    top: 20px;
+    right: 20px;
+    width: 300px; /* Width of the notification box */
+    background-color: #fff3cd; /* Light yellow background for warning */
+    color: #856404; /* Dark yellow text color for contrast */
+    border: 1px solid #ffeeba; /* Border for better visibility */
+    border-radius: 8px; /* Rounded corners */
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    z-index: 1000; /* Ensure it stays above other elements */
+    font-family: Arial, sans-serif;
+}
+
+.notification-card h3 {
+    margin-top: 0;
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #856404;
+}
+
+.notification-card ul {
+    list-style-type: none; /* Remove default list styles */
+    padding: 0;
+    margin: 0;
+}
+
+.notification-card li {
+    font-size: 1em;
+    margin-bottom: 8px;
+}
+
+.notification-card .view-all-link {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: #007bff; /* Blue color for the link */
+    text-decoration: none;
+    text-align: right; /* Align the link to the right */
+}
+
+.notification-card .view-all-link:hover {
+    text-decoration: underline; /* Underline on hover for better UX */
+    color: #0056b3; /* Slightly darker blue on hover */
+}

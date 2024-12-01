@@ -1,0 +1,20 @@
+{% extends "authentication/base.html" %}
+{% block title %}Inventory List{% endblock %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/inventorylist.css' %}">
+
+<div class="inventory-container">
+    <h2 class="inventory-title">Inventory List</h2>
+    <ul class="inventory-list">
+        {% for item in inventory_items %}
+        <li class="inventory-item">
+            <span class="product-name">{{ item.product.name }}</span> - 
+            <span class="stock-level">{{ item.stock_level }} in stock</span>
+            <a href="{% url 'inventory_update' item.id %}" class="btn-edit">Edit</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

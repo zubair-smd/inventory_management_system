@@ -1,0 +1,14 @@
+{% extends "authentication/base.html" %}
+{% block title %}Supplier List{% endblock %}
+{% block content %}
+<h2>Supplier List</h2>
+<a href="{% url 'supplier_create' %}">Add Supplier</a>
+<ul>
+    {% for supplier in suppliers %}
+    <li>
+        {{ supplier.name }} - {{ supplier.contact_email }} - {{ supplier.phone_number }}
+        <a href="{% url 'supplier_update' supplier.id %}">Edit</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

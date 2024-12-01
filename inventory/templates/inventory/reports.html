@@ -1,0 +1,71 @@
+{% extends "authentication/base.html" %}
+{% load static %}
+{% block title %}Reports{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/reports.css' %}">
+
+<div class="report-container">
+    <h2 class="report-title">Reports</h2>
+    <div class="report-summary">
+        <div class="summary-item"><strong>Total Stock:</strong> {{ total_stock }}</div>
+        <div class="summary-item"><strong>Low Stock Items:</strong> {{ low_stock_items }}</div>
+        <div class="summary-item"><strong>Total Orders:</strong> {{ total_orders }}</div>
+        <div class="summary-item"><strong>Pending Orders:</strong> {{ pending_orders }}</div>
+        <div class="summary-item"><strong>Completed Orders:</strong> {{ completed_orders }}</div>
+        <div class="summary-item"><strong>Total Sales:</strong> ${{ total_sales }}</div>
+        <div class="summary-item"><strong>Total Items Sold:</strong> {{ total_items_sold }}</div>
+    </div>
+
+    <div class="chart-section">
+        <div class="chart-container">
+            <h3>Order Status</h3>
+            <canvas id="orderStatusChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <h3>Stock Status</h3>
+            <canvas id="stockStatusChart"></canvas>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const orderStatusCtx = document.getElementById('orderStatusChart').getContext('2d');
+        new Chart(orderStatusCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Pending Orders', 'Completed Orders'],
+                datasets: [{
+                    data: JSON.parse('{{ order_status_data|safe }}'),
+                    backgroundColor: ['#ff6384', '#36a2eb'],
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'top' },
+                }
+            }
+        });
+
+        const stockStatusCtx = document.getElementById('stockStatusChart').getContext('2d');
+        new Chart(stockStatusCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Low Stock', 'Sufficient Stock'],
+                datasets: [{
+                    data: JSON.parse('{{ stock_status_data|safe }}'),
+                    backgroundColor: ['#ffce56', '#4bc0c0'],
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'top' },
+                }
+            }
+        });
+    });
+</script>
+{% endblock %}

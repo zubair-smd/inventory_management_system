@@ -1,0 +1,72 @@
+/* Container Styling */
+.inventory-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Title Styling */
+.inventory-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* List Styling */
+.inventory-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.inventory-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.inventory-item:hover {
+    background-color: #f0f8ff;
+    border-color: #0099cc;
+}
+
+/* Product Name and Stock Level */
+.product-name {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+}
+
+.stock-level {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Edit Button Styling */
+.btn-edit {
+    text-decoration: none;
+    font-size: 14px;
+    color: #007bff;
+    font-weight: bold;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.btn-edit:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
