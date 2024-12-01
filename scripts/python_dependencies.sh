@@ -2,4 +2,4 @@
 
 virtualenv /home/ubuntu/env
 source /home/ubuntu/env/bin/activate
-pip install -r /home/ubuntu/inventory_management/requirements.txt
+pip install -r /home/ubuntu/inventory_management_system/requirements.txt

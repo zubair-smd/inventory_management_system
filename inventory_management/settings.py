@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'reports',
     'documents',
-    'whitenoise.runserver.nostatic',
+    'whitenoise.runserver_nostatic',
 ]
 
 MIDDLEWARE = [
