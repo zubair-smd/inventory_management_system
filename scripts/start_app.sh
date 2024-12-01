@@ -1,10 +1,10 @@
 #!/usr/bin/bash 
 
-sed -i 's/\[]/\["54.144.250.113"]/' /home/ubuntu/inventory_management/inventory_management/settings.py
+#sed -i 's/\[]/\["54.144.250.113"]/' /home/ubuntu/inventory_management/inventory_management/settings.py
 
 python manage.py migrate 
 python manage.py makemigrations     
-python manage.py collectstatic
+#python manage.py collectstatic
 sudo service gunicorn restart
 sudo service nginx restart
 #sudo tail -f /var/log/nginx/error.log

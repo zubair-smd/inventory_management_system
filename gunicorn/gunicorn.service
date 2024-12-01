@@ -6,7 +6,7 @@ After=network.target
 User=ubuntu
 Group=www-data
 WorkingDirectory=/home/ubuntu/inventory_management_system
-ExecStart=/home/ubuntu/env/bin/inventory_management_system --access-logfile - --workers 3 --bind unix:/home/ubuntu/inventory_management_system/inventory_management/inventory_management.sock inventory_management.wsgi:application
+ExecStart=/home/ubuntu/env/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/ubuntu/inventory_management_system/inventory_management/inventory_management.sock inventory_management.wsgi:application
 
        
 [Install]
