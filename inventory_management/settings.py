@@ -85,8 +85,12 @@ WSGI_APPLICATION = 'inventory_management.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': "inventorymanagement",
+        'USER': "admin",
+        'PASSWORD': "B!hD#f53]9p;fm",
+        'HOST': "x23228946-inventory-db.curvive2dban.ap-south-1.rds.amazonaws.com",
+        'PORT':3306,
     }
 }
 
