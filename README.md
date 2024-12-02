@@ -7,16 +7,16 @@ Features include real-time inventory management that tracks stock levels and upd
 The technology stack includes Django for web framework rapid development, AWS services for hosting and cloud infrastructure including Amazon EC2 for application deployment and hosting, Amazon S3 for static file hosting (CSS, images), Amazon RDS for storing inventory and order data, AWS Lambda for serverless functions triggering low-stock alerts, AWS CodeDeploy for automated deployment, and AWS CodePipeline for continuous delivery. The system also uses PostgreSQL for storing application data (orders, products, etc.), Bootstrap for front-end UI components, and Chart.js for visualizing inventory and order data in charts.
 
 To install the project locally, Installation Instructions:
-1. Clone the repository: `git clone https://github.com/zubair-smd/Django-Inventory-mgt.git`
+1. Clone the repository: git clone https://github.com/zubair-smd/Django-Inventory-mgt.git
 2. Navigate to project directory
-3. Create virtual environment: `python3 -m venv venv`
+3. Create virtual environment: python3 -m venv venv
 4. Activate virtual environment:
-   - For Windows: `venv\Scripts\activate`
-   - For Linux/Mac: `source venv/bin/activate`
-5. Install dependencies: `pip install -r requirements.txt`
-6. Set up database: `python manage.py migrate`
-7. Create superuser: `python manage.py createsuperuser`
-8. Start development server: `python manage.py runserver`
+   - For Windows: venv\Scripts\activate
+   - For Linux/Mac: source venv/bin/activate
+5. Install dependencies: pip install -r requirements.txt
+6. Set up database: python manage.py migrate
+7. Create superuser: python manage.py createsuperuser
+8. Start development server: python manage.py runserver
 9. Access application: http://127.0.0.1:8000/
 
 For AWS configuration, set up Amazon EC2 for application hosting by launching an instance with appropriate configurations and security groups. Configure Amazon S3 for static file hosting, set up Amazon RDS for database hosting and update the settings accordingly. AWS Lambda functions handle low-stock notifications with a simple function that monitors inventory levels. AWS CodeDeploy and CodePipeline are implemented for automated deployment and continuous delivery, streamlining the development to production workflow.
